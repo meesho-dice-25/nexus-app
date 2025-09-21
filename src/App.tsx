@@ -1,12 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Search, Plus, MapPin, Package } from "lucide-react"
+import { Search, Plus, MapPin, Package, Target } from "lucide-react"
 import VendorSection from "./components/VendorSection"
 import CustomerSection from "./components/CustomerSection"
+import CampaignSection from "./components/CampaignSection"
 
 function App() {
-  const [activeTab, setActiveTab] = useState<"customer" | "vendor">("customer")
+  const [activeTab, setActiveTab] = useState<"customer" | "vendor" | "campaigns">("customer")
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -44,6 +45,17 @@ function App() {
                 <Plus className="w-4 h-4" />
                 Vendor Portal
               </button>
+              <button
+                onClick={() => setActiveTab("campaigns")}
+                className={`w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  activeTab === "campaigns"
+                    ? "bg-secondary text-secondary-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                }`}
+              >
+                <Target className="w-4 h-4" />
+                Crowdfunding
+              </button>
             </nav>
           </div>
         </div>
@@ -55,12 +67,18 @@ function App() {
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-semibold tracking-tight">
-                    {activeTab === "customer" ? "Find Products" : "Manage Inventory"}
+                    {activeTab === "customer"
+                      ? "Find Products"
+                      : activeTab === "vendor"
+                        ? "Manage Inventory"
+                        : "Crowdfunding Campaigns"}
                   </h2>
                   <p className="text-muted-foreground mt-1">
                     {activeTab === "customer"
                       ? "Search for products from local vendors in your area"
-                      : "Add and manage your product listings"}
+                      : activeTab === "vendor"
+                        ? "Add and manage your product listings"
+                        : "Support local vendors or create your own funding campaign"}
                   </p>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -71,7 +89,15 @@ function App() {
             </div>
           </div>
 
-          <div className="p-8">{activeTab === "customer" ? <CustomerSection /> : <VendorSection />}</div>
+          <div className="p-8">
+            {activeTab === "customer" ? (
+              <CustomerSection />
+            ) : activeTab === "vendor" ? (
+              <VendorSection />
+            ) : (
+              <CampaignSection />
+            )}
+          </div>
         </div>
       </div>
     </div>
