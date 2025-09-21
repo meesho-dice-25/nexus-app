@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tailwindcss";
+
+/* Professional dark theme design system matching Vercel aesthetic */
+@theme inline {
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-muted: #171717;
+  --color-muted-foreground: #a1a1aa;
+  --color-border: #262626;
+  --color-input: #171717;
+  --color-card: #0a0a0a;
+  --color-card-foreground: #fafafa;
+  --color-primary: #ffffff;
+  --color-primary-foreground: #000000;
+  --color-secondary: #262626;
+  --color-secondary-foreground: #fafafa;
+  --color-accent: #262626;
+  --color-accent-foreground: #fafafa;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #fafafa;
+  --color-success: #16a34a;
+  --color-success-foreground: #000000;
+  --color-warning: #f59e0b;
+  --color-warning-foreground: #000000;
+  --radius: 0.5rem;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Custom scrollbar styling for professional look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
+}
